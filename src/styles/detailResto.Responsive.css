@@ -1,0 +1,108 @@
+/* responsive tablet */
+@media screen and (min-width: 500px) and (max-width: 1024px) {
+}
+
+/* responsive hp */
+@media screen and (max-width: 500px) {
+  .detailPage {
+    padding: 20px 20px 20px 20px;
+  }
+
+  .containerIMG {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detailImage {
+    width: 300px;
+  }
+
+  .nameNbuttonSave {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .nameNbuttonSave h1 {
+    font-size: 30px;
+    margin: 10px 0px 0px 0px;
+  }
+
+  .nameNbuttonSave button {
+    width: 30px;
+    height: 20px;
+  }
+
+  .cityNrating {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .rating span {
+    color: gold;
+  }
+
+  .desc p {
+    text-align: center;
+    width: 350px;
+  }
+
+  .CategoryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .categoryItem {
+    background-color: gainsboro;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .saveBTN {
+    margin-top: 30px;
+  }
+
+  .saveBTN button {
+    width: 100px;
+  }
+
+  .menuDesc {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .margin-tp {
+    margin-top: 100px;
+  }
+
+  .ratingContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .ratingItem {
+    background-color: ghostwhite;
+    width: 300px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .ratingItem h2 {
+    font-size: 18px;
+  }
+}

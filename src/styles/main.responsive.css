@@ -1,0 +1,173 @@
+/* responsive tablet */
+@media screen and (min-width: 500px) and (max-width: 1024px) {
+}
+
+/* responsive hp */
+@media screen and (max-width: 500px) {
+  .nav-ul {
+    position: fixed;
+    right: -100%;
+    top: 110px;
+    flex-direction: column;
+    background-color: var(--txt-color-secondary);
+    width: 100%;
+    height: 400px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-ul.active {
+    right: 0;
+  }
+
+  .nav-li {
+    margin: 25px 0;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: block;
+    background-color: transparent;
+    width: 20px;
+  }
+
+  .zeroSection {
+    background-image: url("../public/images/heros/hero-image_1.jpg");
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .zeroSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .zeroSectionTXT {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .zeroSectionTXT h1 {
+    font-size: 40px;
+    min-width: 44px;
+    min-height: 44px;
+    margin: 0px 0px 0px 0px;
+    color: var(--txt-color-primary);
+  }
+
+  .zeroSection p {
+    color: white;
+    font-size: 20px;
+    width: 300px;
+    font-weight: 500;
+  }
+
+  button {
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border: transparent;
+    background-color: var(--txt-color-primary);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  button:hover {
+    background-color: white;
+    color: var(--txt-color-primary);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .daftarResto-TXT {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 50px;
+    color: var(--txt-color-primary);
+  }
+
+  .daftarRestoran {
+    padding: 20px;
+    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .container {
+    padding: 10px;
+    width: 730px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-color: var(--txt-color-secondary);
+  }
+
+  .namaResto {
+    text-align: center;
+    color: white;
+    margin: 0px 0px 20px 0px;
+    font-size: 25px;
+    text-decoration: underline;
+  }
+
+  .keteranganResto {
+    display: inline-flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .kotaResto,
+  .ratingResto {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .fotoResto {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--txt-color-primary);
+    padding: 30px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .zeroSection {
+    min-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .zeroSection {
+    width: 100%;
+  }
+}

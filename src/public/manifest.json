@@ -1,0 +1,21 @@
+{
+  "name": "Restaurant App",
+  "short_name": "RestoApp",
+  "description": "Aplikasi restoran progresif yang bisa diakses offline.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff5722",
+  "icons": [
+    {
+      "src": "./images/icon/mensaIcon.png",  
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/icon/mensaIcon.png",  
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

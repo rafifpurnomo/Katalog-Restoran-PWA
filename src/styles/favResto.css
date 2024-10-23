@@ -1,0 +1,26 @@
+:root {
+  --bg-primary: #e3fdfd;
+  --bg-secondary: #cbf1f5;
+  --txt-color-primary: #71c9ce;
+  --txt-color-secondary: #a6e3e9;
+}
+
+* body,
+html {
+  margin: 0px;
+  padding: 0px;
+  background-color: var(--bg-primary);
+  font-family: "Poppins", system-ui;
+  text-transform: capitalize;
+  scroll-behavior: smooth;
+}
+
+#favoriteContainer{
+    padding: 20px;
+}
+
+.empty-favorites{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
