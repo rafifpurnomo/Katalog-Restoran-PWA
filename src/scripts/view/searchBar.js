@@ -1,6 +1,6 @@
-
 import { searchRestaurants } from "../API/api";
 import { DetailResto } from "./detailResto";
+import { hideLoading, showLoading } from "./loading";
 
 class SearchBar extends HTMLElement {
   connectedCallback() {
@@ -9,15 +9,23 @@ class SearchBar extends HTMLElement {
 
   render() {
     this.innerHTML = `
-        <section class="searchSection">
-          <input
-            type="text"
-            id="searchInput"
-            class="searchInput"
-            placeholder="Cari restoran..."
-          />
-          <button id="searchButton" class="searchButton">Cari</button>
-        </section>
+        <div class="searchSection">
+          <div class="searchInputContainer">
+            <input
+              type="text"
+              id="searchInput"
+              class="searchInput"
+              placeholder="Cari restoran..."
+            />
+          </div>
+          <div class="searchBTN">
+            <button id="searchButton" class="searchButton">Cari</button>
+          </div>
+        </div>
+        <div id="loadingSearch" class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+         <h1 class="daftarResto-TXT" id="notFoundTXT" style="display: none;">Restoran Not Found</h1>
       `;
 
     this.querySelector("#searchButton").addEventListener("click", () => {
@@ -32,11 +40,31 @@ customElements.define("search-bar", SearchBar);
 
 const searchBar = document.querySelector("#searchBar");
 const daftarRestoran = document.querySelector("#daftarRestoran");
+const notFoundTXT = document.getElementById("notFoundTXT");
+const loadingSearch = document.getElementById("loadingSearch");
+const daftarRestoTXT = document.getElementById("daftarResto-TXT");
 
 searchBar.addEventListener("search", async (event) => {
   const query = event.detail;
-  const result = await searchRestaurants(query);
-  renderRestaurants(result);
+  try {
+    showLoading(loadingSearch);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const result = await searchRestaurants(query);
+    if (result && result.length > 0) {
+      renderRestaurants(result);
+      notFoundTXT.style.display = "none";
+      
+    } else {
+      daftarRestoTXT.innerHTML = "";
+      daftarRestoran.innerHTML = "";
+      notFoundTXT.style.display = "block";
+    }
+  } catch (error) {
+    throw error;
+  } finally {
+    hideLoading(loadingSearch);
+  }
 });
 
 function renderRestaurants(restaurants) {
@@ -71,7 +99,6 @@ function renderRestaurants(restaurants) {
       });
     });
   } catch (error) {
-    console.error("Error:", error);
-      daftarRestoran.innerHTML = "<p>Restaurant Not Found.</p>";
+    throw error;
   }
 }

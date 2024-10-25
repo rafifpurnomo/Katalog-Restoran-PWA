@@ -2,32 +2,31 @@ import FavoriteRestoIdb from "../config/indexDB.config";
 import { DetailResto } from "./detailResto";
 import { hideLoading, showLoading } from "./loading";
 
-
-const detailSection = document.getElementById("detailSection");
-const favoriteSection = document.getElementById("favoriteSection");
-
 export async function displayFavorites() {
+  const detailSection = document.getElementById("detailSection");
+  const favoriteSection = document.getElementById("favoriteSection");
+  const favorites = await FavoriteRestoIdb.getAllResto();
+  const favoriteContainer = document.getElementById("favoriteContainer");
+  const idLoadingFav = document.getElementById("loadingFavorite");
+  
   try {
-    showLoading();
+    showLoading(idLoadingFav);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    const favorites = await FavoriteRestoIdb.getAllResto();
-    const favoriteContainer = document.getElementById("favoriteContainer");
 
     if (favorites.length === 0) {
       favoriteContainer.innerHTML =
         '<p class="empty-favorites">Tidak ada restoran favorit</p>';
       return;
     }
-
     favoriteContainer.innerHTML = "";
+
     favorites.forEach((restaurant) => {
-      const imageUrl = `https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}`;
+      const imageUrl = `https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}`;
       const restoranElement = `
           <div class="container" data-id="${restaurant.id}">
             <h1 class="namaResto">${restaurant.name}</h1>
             <div class="detailResto">
-              <img src="${imageUrl}" alt="${restaurant.name}" class="fotoResto">
+              <img src="${imageUrl}" crossorigin="anonymous" alt="${restaurant.name}" class="fotoResto">
               <div class="keteranganResto">
                 <p class="kotaResto">${restaurant.city}</p>
                 <p class="ratingResto">Rating: ${restaurant.rating}</p>
@@ -50,9 +49,8 @@ export async function displayFavorites() {
       });
     });
   } catch (error) {
-    console.error("Error:", error);
+    throw error;
   } finally {
-    hideLoading();
+    hideLoading(idLoadingFav);
   }
 }
-

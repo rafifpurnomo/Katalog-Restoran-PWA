@@ -16,7 +16,7 @@ import "./view/detailResto";
 import "./view/displayFavorites";
 import "./view/loading";
 
-import swRegist from "./config/app";
+import swRegist from "./config/sw";
 
 document.addEventListener("DOMContentLoaded", () => {
   swRegist();

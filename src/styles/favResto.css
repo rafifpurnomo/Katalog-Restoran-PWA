@@ -15,12 +15,16 @@ html {
   scroll-behavior: smooth;
 }
 
-#favoriteContainer{
-    padding: 20px;
+#favoriteContainer {
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.empty-favorites{
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+.empty-favorites {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }

@@ -33,7 +33,6 @@ const detailSection = document.getElementById("detailSection");
 const favoriteSection = document.getElementById("favoriteSection");
 
 document.getElementById("favoriteLink").addEventListener("click", (e) => {
-  showLoading();
   e.preventDefault();
   daftarSection.style.display = "none";
   detailSection.style.display = "none";

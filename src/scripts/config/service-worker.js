@@ -1,8 +1,8 @@
 if (!self.define) {
   let e,
     s = {};
-  const i = (i, a) => (
-    (i = new URL(i + ".js", a).href),
+  const i = (i, c) => (
+    (i = new URL(i + ".js", c).href),
     s[i] ||
       new Promise((s) => {
         if ("document" in self) {
@@ -15,16 +15,16 @@ if (!self.define) {
         return e;
       })
   );
-  self.define = (a, c) => {
+  self.define = (c, a) => {
     const r =
       e ||
       ("document" in self ? document.currentScript.src : "") ||
       location.href;
     if (s[r]) return;
-    let n = {};
-    const o = (e) => i(e, r),
-      f = { module: { uri: r }, exports: n, require: o };
-    s[r] = Promise.all(a.map((e) => f[e] || o(e))).then((e) => (c(...e), n));
+    let d = {};
+    const n = (e) => i(e, r),
+      o = { module: { uri: r }, exports: d, require: n };
+    s[r] = Promise.all(c.map((e) => o[e] || n(e))).then((e) => (a(...e), d));
   };
 }
 define(["./workbox-3ca83693"], function (e) {
@@ -64,31 +64,31 @@ define(["./workbox-3ca83693"], function (e) {
         },
         {
           url: "scripts/API/api.js",
-          revision: "5edf32a202b69e59af30196f0fb6f75e",
-        },
-        {
-          url: "scripts/config/app.js",
-          revision: "014ce9ac7ab22c902518bca3245660a5",
+          revision: "d76e87a513c8e9e8fc9ddc69c4dc4c17",
         },
         {
           url: "scripts/config/indexDB.config.js",
           revision: "c96f3c93eff38b1d266fa4c2ec28f2f8",
         },
         {
+          url: "scripts/config/sw.js",
+          revision: "5207cac701f6a2adca56a5e48c5b4b67",
+        },
+        {
           url: "scripts/index.js",
-          revision: "122e329cb51d4ba5a00dee0406d7c615",
+          revision: "a9b087dfff570aaa9ab9d1c5d29c5679",
         },
         {
           url: "scripts/view/detailResto.js",
-          revision: "96c256ae8cba7b1a933fa8149e9457d8",
+          revision: "8dbb405f15a7c1499d1b3ead598b6de2",
         },
         {
           url: "scripts/view/displayFavorites.js",
-          revision: "4062629b5b4797dcbabb23df2f3ee76a",
+          revision: "3a4bfb02666f0c098bb4a1fcbbe38d71",
         },
         {
           url: "scripts/view/displayResto.js",
-          revision: "bc6809faf0f1f619614977cae603cab2",
+          revision: "511d06e93f089e2a5fe5083c35a17fea",
         },
         {
           url: "scripts/view/loading.js",
@@ -100,7 +100,7 @@ define(["./workbox-3ca83693"], function (e) {
         },
         {
           url: "scripts/view/searchBar.js",
-          revision: "4ffceb4a692e7855eb1c7520a63476be",
+          revision: "e0a039aabd4071d8ca2518e0753da3ce",
         },
         {
           url: "scripts/view/zerosection.js",
@@ -116,7 +116,7 @@ define(["./workbox-3ca83693"], function (e) {
         },
         {
           url: "styles/favResto.css",
-          revision: "3bbbb16528086708c2d1aa97cf7ee0cf",
+          revision: "919e6df3875f7e1f1efe31368bfffcd1",
         },
         {
           url: "styles/loading.css",
@@ -132,11 +132,11 @@ define(["./workbox-3ca83693"], function (e) {
         },
         {
           url: "styles/searchBar.css",
-          revision: "faef68fc26656cae7d815cbb0330e856",
+          revision: "581c92c8ca409111a1ba880dbbc87a11",
         },
         {
           url: "templates/index.html",
-          revision: "aeaf2d5aa95bda7316ec876251ff61b3",
+          revision: "e66e76911adc08eec894fa6c7f45d634",
         },
       ],
       {}
@@ -155,7 +155,7 @@ define(["./workbox-3ca83693"], function (e) {
       "GET"
     ),
     e.registerRoute(
-      /^https:\/\/restaurant-api\.dicoding\.dev\/images\/medium\//,
+      /^https:\/\/restaurant-api\.dicoding\.dev\/images\/small\//,
       new e.StaleWhileRevalidate({ cacheName: "mensa-image-api", plugins: [] }),
       "GET"
     );

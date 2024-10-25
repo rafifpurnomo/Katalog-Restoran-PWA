@@ -18,7 +18,7 @@ module.exports = {
 		},
 	  },
 	  {
-		urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/images\/medium\//,
+		urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/images\/small\//,
 		handler: 'StaleWhileRevalidate',
 		options: {
 		  cacheName: 'mensa-image-api',
