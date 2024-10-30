@@ -18,7 +18,7 @@ import "./view/loading";
 import swRegist from "./config/sw";
 import App from "./app";
 
-
+swRegist();
 const app = new App({
   button: document.querySelector('#hamburger'),
   drawer: document.querySelector('#navbar'),
@@ -33,9 +33,4 @@ window.addEventListener('hashchange', () => {
 window.addEventListener('load', () => {
   app.renderPage();
 });
-// document.addEventListener("DOMContentLoaded", async() => {
-//   //swRegist();
-//   const app = document.getElementById('daftarSection');
-//   app.innerHTML = await displayFavorites.render(); // Menyisipkan HTML dari render
-//   await displayResto.afterRender();
-// });
+
