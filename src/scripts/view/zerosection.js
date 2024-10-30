@@ -2,7 +2,7 @@ class ZeroSection extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
      <section>
-        <div class="zeroSection">
+        <div class="zeroSection" id="hero">
             <div class="zeroSectionTXT">
                 <h1>Menu Nusantara</h1>
                 <p>hidangan makanan khas dari berbagai daerah di indonesia</p>

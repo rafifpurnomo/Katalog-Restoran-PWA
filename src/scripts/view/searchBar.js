@@ -1,5 +1,5 @@
 import { searchRestaurants } from "../API/api";
-import { DetailResto } from "./detailResto";
+import  DetailResto  from "./detailResto";
 import { hideLoading, showLoading } from "./loading";
 
 class SearchBar extends HTMLElement {

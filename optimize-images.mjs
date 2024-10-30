@@ -6,9 +6,9 @@ import imageminPngquant from 'imagemin-pngquant';
   const files = await imagemin(['src/public/images/heros/*.{jpg,png}'], {
     destination: 'src/public/images/compressIMG-mobile',
     plugins: [
-      imageminMozjpeg({ quality: 75 }), 
+      imageminMozjpeg({ quality: 60 }), 
       imageminPngquant({
-        quality: [0.6, 0.8],
+        quality: [0.5, 0.7], 
       }),
     ],
   });

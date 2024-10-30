@@ -11,15 +11,31 @@ import "../styles/loading.css";
 import "./view/navbar";
 import "./view/zerosection";
 import "./view/searchBar";
-import { displayRestoran } from "./view/displayResto";
 import "./view/detailResto";
 import "./view/displayFavorites";
 import "./view/loading";
 
 import swRegist from "./config/sw";
+import App from "./app";
 
-document.addEventListener("DOMContentLoaded", () => {
-  swRegist();
-  displayRestoran();
+
+const app = new App({
+  button: document.querySelector('#hamburger'),
+  drawer: document.querySelector('#navbar'),
+  content: document.querySelector('#mainContent'),
+  hero: document.querySelector('#hero'),
 });
 
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
+
+window.addEventListener('load', () => {
+  app.renderPage();
+});
+// document.addEventListener("DOMContentLoaded", async() => {
+//   //swRegist();
+//   const app = document.getElementById('daftarSection');
+//   app.innerHTML = await displayFavorites.render(); // Menyisipkan HTML dari render
+//   await displayResto.afterRender();
+// });

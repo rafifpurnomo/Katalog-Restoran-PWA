@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-jest.setTimeout(20000); 
+jest.setTimeout(20000);
 
 describe("Favorite Button End-to-End Test", () => {
   let browser;
