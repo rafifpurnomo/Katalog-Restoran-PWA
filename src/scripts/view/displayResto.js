@@ -56,7 +56,7 @@ const displayResto = {
         button.addEventListener("click", (event) => {
           const restoID = event.target.dataset.id;
           window.location.href = `#/detail/${restoID}`;
-          console.log(restoID)
+          console.log(restoID);
         });
       });
 

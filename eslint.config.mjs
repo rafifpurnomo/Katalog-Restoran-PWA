@@ -9,9 +9,8 @@ export default [
     },
     ...pluginJs.configs.recommended,
     rules: {
-      semi: ["error", "always"], // Tambahkan aturan semi-colon (opsional)
-      "no-console": "warn",      // Peringatan untuk console.log (opsional)
-      "no-undef": "error",       // Error jika ada variabel yang tidak didefinisikan
+      semi: ["error", "always"], 
+      "no-undef": "error",     
     },
   },
 
