@@ -1,32 +1,32 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { GenerateSW } = require('workbox-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { GenerateSW } = require("workbox-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
+    app: path.resolve(__dirname, "src/scripts/index.js"),
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
     clean: true,
   },
   output: {
-    filename: '[name].[contenthash].js', 
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
     clean: true,
   },
   optimization: {
     splitChunks: {
-      chunks: 'all', 
+      chunks: "all",
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
+          name: "vendors",
+          chunks: "all",
         },
       },
     },
@@ -37,10 +37,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: "style-loader",
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
           },
         ],
       },
@@ -49,48 +49,52 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new GenerateSW({
-      swDest: 'service-worker.js', 
+      swDest: "service-worker.js",
       clientsClaim: true,
       skipWaiting: true,
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/list\//,
-          handler: 'StaleWhileRevalidate',
+          handler: "StaleWhileRevalidate",
           options: {
-            cacheName: 'mensa-api',
+            cacheName: "mensa-api",
           },
         },
         {
           urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/detail\//,
-          handler: 'StaleWhileRevalidate',
+          handler: "StaleWhileRevalidate",
           options: {
-            cacheName: 'mensa-api-detail',
+            cacheName: "mensa-api-detail",
           },
         },
         {
-          urlPattern: /^https:\/\/restaurant-api\.dicoding\.dev\/images\/small\//,
-          handler: 'StaleWhileRevalidate',
+          urlPattern:
+            /^https:\/\/restaurant-api\.dicoding\.dev\/images\/small\//,
+          handler: "StaleWhileRevalidate",
           options: {
-            cacheName: 'mensa-image-api',
+            cacheName: "mensa-image-api",
           },
         },
       ],
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, 'src/templates/index.html'),
+      filename: "index.html",
+      template: path.resolve(__dirname, "src/templates/index.html"),
+      favicon: "src/public/images/icon/mensaIcon.png",
+      inject: true,
+      scriptLoading: "defer",
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/public/'),
-          to: path.resolve(__dirname, 'dist/'),
+          from: path.resolve(__dirname, "src/public/"),
+          to: path.resolve(__dirname, "dist/"),
         },
       ],
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static', 
-      openAnalyzer: true,     
+      analyzerMode: "static",
+      openAnalyzer: true,
     }),
   ],
 };
