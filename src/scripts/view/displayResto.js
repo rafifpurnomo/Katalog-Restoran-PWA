@@ -26,7 +26,7 @@ export async function displayRestoran() {
           <div class="container" data-id="${restaurant.id}">
             <h1 class="namaResto">${restaurant.name}</h1>
             <div class="detailResto">
-              <img src="${imageUrl}" crossorigin="anonymous" alt="${restaurant.name}" class="fotoResto">
+              <img src="${imageUrl}" loading="lazy"  crossorigin="anonymous" alt="${restaurant.name}" class="fotoResto">
               <div class="keteranganResto">
                 <p class="kotaResto">${restaurant.city}</p>
                 <p class="ratingResto">Rating: ${restaurant.rating}</p>
