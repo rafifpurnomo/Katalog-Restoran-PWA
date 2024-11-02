@@ -7,6 +7,7 @@
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "serve": "http-server dist",
+    "test:e2e": "codeceptjs run --steps",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "eslint ./src",

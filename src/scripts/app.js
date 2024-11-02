@@ -25,9 +25,14 @@ class App {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     await page.afterRender();
-    
-    console.log("Parsed URL:", url); // Log the parsed URL
-    console.log("Available routes:", Object.keys(routes)); // Check available routes
+
+    const skipLink = document.querySelector(".skip-link");
+    const mainContent = document.querySelector("#mainContent");
+    skipLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      mainContent.scrollIntoView({ behavior: "smooth" });
+      skipLink.blur();
+    });
   }
 }
 

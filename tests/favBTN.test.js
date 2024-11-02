@@ -1,6 +1,6 @@
 import { beforeEach, describe, jest, test } from "@jest/globals";
-import FavoriteRestoIdb from "../src/scripts/config/indexDB.config";
 import { fireEvent } from "@testing-library/dom";
+import FavoriteRestoIdb from "../src/scripts/config/indexDB.config";
 
 jest.mock("../src/scripts/config/indexDB.config", () => ({
   putResto: jest.fn(),
