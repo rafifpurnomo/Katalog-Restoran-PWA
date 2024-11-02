@@ -15,19 +15,7 @@ export default [
       "no-undef": "error",     
     },
   },
-
   {
-    files: ["src/scripts/config/service-worker.js", "src/scripts/config/workbox-*.js"],
-    languageOptions: {
-      globals: {
-        importScripts: "readonly",
-        define: "readonly",
-        registration: "readonly",
-        FetchEvent: "readonly",
-      },
-    },
-  },
-  {
-    ignores: ["src/scripts/config/workbox-*.js"],
+    ignores: ["src/scripts/config/service-worker.js","src/scripts/config/workbox-*.js"],
   },
 ];
