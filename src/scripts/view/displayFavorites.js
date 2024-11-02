@@ -1,5 +1,5 @@
-import FavoriteRestoIdb from "../config/indexDB.config";
-import { hideLoading, showLoading } from "./loading";
+import FavoriteRestoIdb from '../config/indexDB.config';
+import { hideLoading, showLoading } from './loading';
 
 const displayFavorites = {
   async render() {
@@ -13,8 +13,8 @@ const displayFavorites = {
   },
 
   async afterRender() {
-    const favoriteContainer = document.getElementById("favoriteContainer");
-    const idLoadingFav = document.getElementById("loadingFavorite");
+    const favoriteContainer = document.getElementById('favoriteContainer');
+    const idLoadingFav = document.getElementById('loadingFavorite');
 
     try {
       showLoading(idLoadingFav);
@@ -26,7 +26,7 @@ const displayFavorites = {
           '<p class="empty-favorites">Tidak ada restoran favorit</p>';
         return;
       }
-      favoriteContainer.innerHTML = "";
+      favoriteContainer.innerHTML = '';
 
       favorites.forEach((restaurant) => {
         const imageUrl = `https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}`;
@@ -49,14 +49,14 @@ const displayFavorites = {
         favoriteContainer.innerHTML += restoranElement;
       });
 
-      document.querySelectorAll(".detailButton").forEach((button) => {
-        button.addEventListener("click", (event) => {
+      document.querySelectorAll('.detailButton').forEach((button) => {
+        button.addEventListener('click', (event) => {
           const restoID = event.target.dataset.id;
           window.location.href = `#/detail/${restoID}`;
         });
       });
     } catch (error) {
-      console.error("Error fetching favorite restaurants:", error);
+      console.error('Error fetching favorite restaurants:', error);
     } finally {
       hideLoading(idLoadingFav);
     }

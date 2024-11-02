@@ -1,7 +1,7 @@
-import { getDetailResto } from "../API/api";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import FavoriteRestoIdb from "../config/indexDB.config";
-import UrlParser from "../routes/urlParser";
+import { getDetailResto } from '../API/api';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import FavoriteRestoIdb from '../config/indexDB.config';
+import UrlParser from '../routes/urlParser';
 
 const DetailResto = {
   async render() {
@@ -18,8 +18,8 @@ const DetailResto = {
           <img src="${imageUrl}" crossorigin="anonymous" alt="${restaurant.name}" class="detailImage">
           <div class="nameNbuttonSave">
             <h1>${restaurant.name}</h1>
-            <button id="favoriteButton" class="${isFavorite ? "favorite" : ""}">
-              <span class="material-icons">${isFavorite ? "cancel" : "favorite"}</span>
+            <button id="favoriteButton" class="${isFavorite ? 'favorite' : ''}">
+              <span class="material-icons">${isFavorite ? 'cancel' : 'favorite'}</span>
             </button>
           </div>
           <div class="cityNrating">
@@ -52,54 +52,54 @@ const DetailResto = {
   },
 
   async afterRender() {
-    const detailSection = document.querySelector("#detailSection");
+    const detailSection = document.querySelector('#detailSection');
     const url = UrlParser.parseActiveUrlWithoutCombiner();
 
     if (!detailSection) {
-      console.error("Detail section tidak ditemukan");
+      console.error('Detail section tidak ditemukan');
       return;
     }
     try {
       const restaurant = await getDetailResto(url.id);
       const categoryContainer =
-        detailSection.querySelector(".CategoryContainer");
+        detailSection.querySelector('.CategoryContainer');
 
       restaurant.categories.forEach((category) => {
-        const categoryElement = document.createElement("div");
-        categoryElement.classList.add("categoryItem");
+        const categoryElement = document.createElement('div');
+        categoryElement.classList.add('categoryItem');
         categoryElement.innerHTML = `<p>${category.name}</p>`;
         categoryContainer.appendChild(categoryElement);
       });
 
       // INI BUAT MAKANAN RESTORAN
-      const foodList = detailSection.querySelector(".makanan");
+      const foodList = detailSection.querySelector('.makanan');
       restaurant.menus.foods.forEach((food) => {
-        const foodItem = document.createElement("li");
+        const foodItem = document.createElement('li');
         foodItem.textContent = food.name;
         foodList.appendChild(foodItem);
       });
 
       // INI BUAT MINUMAN RESTORAN
-      const drinkList = detailSection.querySelector(".minuman");
+      const drinkList = detailSection.querySelector('.minuman');
       restaurant.menus.drinks.forEach((drink) => {
-        const drinkItem = document.createElement("li");
+        const drinkItem = document.createElement('li');
         drinkItem.textContent = drink.name;
         drinkList.appendChild(drinkItem);
       });
 
       // INI BUAT RATING RESTORAN
-      const ratingContainer = detailSection.querySelector(".ratingContainer");
+      const ratingContainer = detailSection.querySelector('.ratingContainer');
       restaurant.customerReviews.forEach((netizen) => {
-        const ratingElement = document.createElement("div");
-        ratingElement.classList.add("ratingItem");
+        const ratingElement = document.createElement('div');
+        ratingElement.classList.add('ratingItem');
 
-        const nameElement = document.createElement("p");
+        const nameElement = document.createElement('p');
         nameElement.textContent = netizen.name;
 
-        const reviewElement = document.createElement("p");
+        const reviewElement = document.createElement('p');
         reviewElement.textContent = netizen.review;
 
-        const dateElement = document.createElement("h2");
+        const dateElement = document.createElement('h2');
         dateElement.textContent = netizen.date;
 
         ratingElement.appendChild(dateElement);
@@ -109,27 +109,27 @@ const DetailResto = {
         ratingContainer.appendChild(ratingElement);
       });
 
-      const favoriteButton = detailSection.querySelector("#favoriteButton");
-      favoriteButton.addEventListener("click", async () => {
+      const favoriteButton = detailSection.querySelector('#favoriteButton');
+      favoriteButton.addEventListener('click', async () => {
         if (await FavoriteRestoIdb.getResto(url.id)) {
           await FavoriteRestoIdb.deleteResto(url.id);
-          favoriteButton.classList.remove("favorite");
-          favoriteButton.innerHTML = `<span class="material-icons">favorite</span>`;
+          favoriteButton.classList.remove('favorite');
+          favoriteButton.innerHTML = '<span class="material-icons">favorite</span>';
           Swal.fire({
-            title: "Success",
-            text: "Restoran dihapus dari favorite",
-            icon: "success",
-            confirmButtonText: "continue",
+            title: 'Success',
+            text: 'Restoran dihapus dari favorite',
+            icon: 'success',
+            confirmButtonText: 'continue',
           });
         } else {
           await FavoriteRestoIdb.putResto(restaurant);
-          favoriteButton.classList.add("favorite");
-          favoriteButton.innerHTML = `<span class="material-icons">cancel</span>`;
+          favoriteButton.classList.add('favorite');
+          favoriteButton.innerHTML = '<span class="material-icons">cancel</span>';
           Swal.fire({
-            title: "Success",
-            text: "Restoran ditambahkan ke favorite",
-            icon: "success",
-            confirmButtonText: "continue",
+            title: 'Success',
+            text: 'Restoran ditambahkan ke favorite',
+            icon: 'success',
+            confirmButtonText: 'continue',
           });
         }
       });

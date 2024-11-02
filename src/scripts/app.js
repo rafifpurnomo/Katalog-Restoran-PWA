@@ -1,6 +1,6 @@
-import DrawerInitiator from "./routes/drawer-initiator";
-import routes from "./routes/routes";
-import UrlParser from "./routes/urlParser";
+import DrawerInitiator from './routes/drawer-initiator';
+import routes from './routes/routes';
+import UrlParser from './routes/urlParser';
 
 class App {
   constructor({ button, drawer, content, hero }) {
@@ -26,11 +26,11 @@ class App {
     this._content.innerHTML = await page.render();
     await page.afterRender();
 
-    const skipLink = document.querySelector(".skip-link");
-    const mainContent = document.querySelector("#mainContent");
-    skipLink.addEventListener("click", (e) => {
+    const skipLink = document.querySelector('.skip-link');
+    const mainContent = document.querySelector('#mainContent');
+    skipLink.addEventListener('click', (e) => {
       e.preventDefault();
-      mainContent.scrollIntoView({ behavior: "smooth" });
+      mainContent.scrollIntoView({ behavior: 'smooth' });
       skipLink.blur();
     });
   }

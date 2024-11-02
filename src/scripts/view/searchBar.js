@@ -1,6 +1,6 @@
-import { searchRestaurants } from "../API/api";
-import  DetailResto  from "./detailResto";
-import { hideLoading, showLoading } from "./loading";
+import { searchRestaurants } from '../API/api';
+import  DetailResto  from './detailResto';
+import { hideLoading, showLoading } from './loading';
 
 class SearchBar extends HTMLElement {
   connectedCallback() {
@@ -28,23 +28,23 @@ class SearchBar extends HTMLElement {
          <h1 class="daftarResto-TXT" id="notFoundTXT" style="display: none;">Restoran Not Found</h1>
       `;
 
-    this.querySelector("#searchButton").addEventListener("click", () => {
-      const query = this.querySelector("#searchInput").value;
+    this.querySelector('#searchButton').addEventListener('click', () => {
+      const query = this.querySelector('#searchInput').value;
       if (query)
-        this.dispatchEvent(new CustomEvent("search", { detail: query }));
+        this.dispatchEvent(new CustomEvent('search', { detail: query }));
     });
   }
 }
 
-customElements.define("search-bar", SearchBar);
+customElements.define('search-bar', SearchBar);
 
-const searchBar = document.querySelector("#searchBar");
-const daftarRestoran = document.querySelector("#daftarRestoran");
-const notFoundTXT = document.getElementById("notFoundTXT");
-const loadingSearch = document.getElementById("loadingSearch");
-const daftarRestoTXT = document.getElementById("daftarResto-TXT");
+const searchBar = document.querySelector('#searchBar');
+const daftarRestoran = document.querySelector('#daftarRestoran');
+const notFoundTXT = document.getElementById('notFoundTXT');
+const loadingSearch = document.getElementById('loadingSearch');
+const daftarRestoTXT = document.getElementById('daftarResto-TXT');
 
-searchBar.addEventListener("search", async (event) => {
+searchBar.addEventListener('search', async (event) => {
   const query = event.detail;
   try {
     showLoading(loadingSearch);
@@ -53,12 +53,12 @@ searchBar.addEventListener("search", async (event) => {
     const result = await searchRestaurants(query);
     if (result && result.length > 0) {
       renderRestaurants(result);
-      notFoundTXT.style.display = "none";
-      
+      notFoundTXT.style.display = 'none';
+
     } else {
-      daftarRestoTXT.innerHTML = "";
-      daftarRestoran.innerHTML = "";
-      notFoundTXT.style.display = "block";
+      daftarRestoTXT.innerHTML = '';
+      daftarRestoran.innerHTML = '';
+      notFoundTXT.style.display = 'block';
     }
   } catch (error) {
     throw error;
@@ -69,11 +69,11 @@ searchBar.addEventListener("search", async (event) => {
 
 function renderRestaurants(restaurants) {
   try {
-    daftarRestoran.innerHTML = "";
+    daftarRestoran.innerHTML = '';
     restaurants.forEach((restaurant) => {
       const imageUrl = `https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}`;
-      const restaurantItem = document.createElement("div");
-      restaurantItem.classList.add("restaurant-item");
+      const restaurantItem = document.createElement('div');
+      restaurantItem.classList.add('restaurant-item');
       restaurantItem.innerHTML = `
       <div class="container" data-id="${restaurant.id}">
             <h1 class="namaResto">${restaurant.name}</h1>
@@ -91,8 +91,8 @@ function renderRestaurants(restaurants) {
         </div>
     `;
       daftarRestoran.appendChild(restaurantItem);
-      document.querySelectorAll(".detailButton").forEach((button) => {
-        button.addEventListener("click", (event) => {
+      document.querySelectorAll('.detailButton').forEach((button) => {
+        button.addEventListener('click', (event) => {
           const restoID = event.target.dataset.id;
           DetailResto(restoID);
         });

@@ -1,17 +1,17 @@
-const API_URL = "https://restaurant-api.dicoding.dev";
+const API_URL = 'https://restaurant-api.dicoding.dev';
 
 export async function getAllRestaurant() {
   try {
     const response = await fetch(`${API_URL}/list`, {
-      method: "GET",
+      method: 'GET',
     });
 
     if (!response.ok) {
-      throw new Error("Gagal mengambil data");
+      throw new Error('Gagal mengambil data');
     }
 
     const result = await response.json();
-    const cache = await caches.open("mensa-api");
+    const cache = await caches.open('mensa-api');
     cache.put(`${API_URL}/list`, new Response(JSON.stringify(result)));
 
     return result.restaurants;
@@ -28,16 +28,16 @@ export async function getAllRestaurant() {
 export async function getDetailResto(id) {
   try {
     const response = await fetch(`${API_URL}/detail/${id}`, {
-      method: "GET",
+      method: 'GET',
     });
 
     if (!response.ok) {
-      throw new Error("Gagal mengambil data");
+      throw new Error('Gagal mengambil data');
     }
 
     const result = await response.json();
 
-    const cache = await caches.open("mensa-api-detail");
+    const cache = await caches.open('mensa-api-detail');
     cache.put(`${API_URL}/detail/${id}`, new Response(JSON.stringify(result)));
 
     return result.restaurant;
@@ -65,9 +65,9 @@ export async function getRestoImg(id) {
   const url = `${API_URL}/images/small/${id}`;
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error("Gagal mengambil gambar");
+    if (!response.ok) throw new Error('Gagal mengambil gambar');
 
-    const cache = await caches.open("mensa-image-api");
+    const cache = await caches.open('mensa-image-api');
     cache.put(url, response.clone());
     return response.url;
   } catch (error) {

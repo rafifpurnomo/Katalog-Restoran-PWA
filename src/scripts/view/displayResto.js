@@ -1,6 +1,6 @@
-import { getAllRestaurant } from "../API/api";
-import  DetailResto  from "./detailResto";
-import { hideLoading, showLoading } from "./loading";
+import { getAllRestaurant } from '../API/api';
+import  DetailResto  from './detailResto';
+import { hideLoading, showLoading } from './loading';
 
 const displayResto = {
   async render() {
@@ -14,22 +14,22 @@ const displayResto = {
   },
 
   async afterRender() {
-    const daftarRestoran = document.getElementById("daftarRestoran");
-    const daftarRestoTXT = document.getElementById("daftarResto-TXT");
-    const idLoadingHome = document.getElementById("loadingHome");
+    const daftarRestoran = document.getElementById('daftarRestoran');
+    const daftarRestoTXT = document.getElementById('daftarResto-TXT');
+    const idLoadingHome = document.getElementById('loadingHome');
 
     try {
       showLoading(idLoadingHome);
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      daftarRestoTXT.innerHTML = `<h1 class="daftarResto-TXT">Daftar Restoran</h1>`;
+      daftarRestoTXT.innerHTML = '<h1 class="daftarResto-TXT">Daftar Restoran</h1>';
 
       const restaurants = await getAllRestaurant();
       if (!restaurants || restaurants.length === 0) {
-        throw new Error("No restaurants found");
+        throw new Error('No restaurants found');
       }
 
-      daftarRestoran.innerHTML = ""; // Reset daftarRestoran
+      daftarRestoran.innerHTML = ''; // Reset daftarRestoran
       restaurants.forEach((restaurant) => {
         const imageUrl = `https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}`;
         const restoranElement = `
@@ -52,8 +52,8 @@ const displayResto = {
       });
 
       // Menambahkan event listener untuk tombol detail
-      document.querySelectorAll(".detailButton").forEach((button) => {
-        button.addEventListener("click", (event) => {
+      document.querySelectorAll('.detailButton').forEach((button) => {
+        button.addEventListener('click', (event) => {
           const restoID = event.target.dataset.id;
           window.location.href = `#/detail/${restoID}`;
           console.log(restoID);
@@ -61,7 +61,7 @@ const displayResto = {
       });
 
     } catch (error) {
-      daftarRestoran.innerHTML = "<p>404 Not Found.</p>";
+      daftarRestoran.innerHTML = '<p>404 Not Found.</p>';
       throw error;
     } finally {
       hideLoading(idLoadingHome);

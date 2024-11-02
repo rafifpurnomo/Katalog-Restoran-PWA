@@ -1,6 +1,6 @@
-import DetailResto from "../view/detailResto";
-import displayFavorites from "../view/displayFavorites";
-import displayResto from "../view/displayResto";
+import DetailResto from '../view/detailResto';
+import displayFavorites from '../view/displayFavorites';
+import displayResto from '../view/displayResto';
 
 const routes = {
   '/': displayResto,

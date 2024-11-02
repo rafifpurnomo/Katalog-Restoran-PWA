@@ -1,5 +1,5 @@
-import  displayFavorites  from "./displayFavorites";
-import { displayRestoran } from "./displayResto";
+import  displayFavorites  from './displayFavorites';
+import { displayRestoran } from './displayResto';
 class NavBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -22,39 +22,39 @@ class NavBar extends HTMLElement {
   }
 }
 
-customElements.define("nav-bar", NavBar);
+customElements.define('nav-bar', NavBar);
 
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-ul");
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-ul');
 
-document.getElementById("favoriteLink").addEventListener("click", (e) => {
-  e.preventDefault(); 
-  window.location.hash = '/favorite'; 
+document.getElementById('favoriteLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  window.location.hash = '/favorite';
 });
 
 
-hamburger.addEventListener("click", toggleMenu);
+hamburger.addEventListener('click', toggleMenu);
 
 function toggleMenu() {
-  const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
-  hamburger.setAttribute("aria-expanded", !isExpanded);
-  hamburger.classList.toggle("active");
-  navMenu.classList.toggle("active");
+  const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+  hamburger.setAttribute('aria-expanded', !isExpanded);
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
 }
 
-const navLink = document.querySelectorAll(".nav-a");
+const navLink = document.querySelectorAll('.nav-a');
 
-navLink.forEach((n) => n.addEventListener("click", closeMenu));
+navLink.forEach((n) => n.addEventListener('click', closeMenu));
 
 function closeMenu() {
-  hamburger.classList.remove("active");
-  navMenu.classList.remove("active");
+  hamburger.classList.remove('active');
+  navMenu.classList.remove('active');
 }
 
-document.addEventListener("click", function (event) {
+document.addEventListener('click', (event) => {
   const isClickInsideNav =
     navMenu.contains(event.target) || hamburger.contains(event.target);
-  if (!isClickInsideNav && navMenu.classList.contains("active")) {
+  if (!isClickInsideNav && navMenu.classList.contains('active')) {
     closeMenu();
   }
 });
